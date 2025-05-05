@@ -1,0 +1,11 @@
+# Service settings / Служебные настройки
+regru_get_resource_record: "https://api.reg.ru/api/regru2/zone/get_resource_records"
+validate_ssl_certs: yes
+return_response_content: yes
+# false = enble debug log / true = disable debug log
+set_log_debug: "false"
+# Request settings / Настройки запроса
+user_agent: "Mozilla/5.0 (compatible; GithubBot/3.0)"
+content_type: "application/x-www-form-urlencoded"
+accept_type: "application/json"
+body_format: "form-urlencoded"
