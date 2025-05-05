@@ -1,0 +1,46 @@
+---
+- name: "Запрос к api reg.ru для {{ user_get_domain }}"
+  ansible.builtin.uri:
+    url: "{{ regru_get_resource_record }}"
+    method: POST
+    http_agent: "{{ user_agent }}"
+    headers:
+      User-Agent: "{{ user_agent | default('Ansible') }}"
+      Content-Type: "{{ content_type }}"
+      Accept: "{{ accept_type }}"
+    body_format: "{{ body_format }}"
+    body:
+      username: "{{ regru_login }}"
+      password: "{{ regru_password }}"
+      domain_name: "{{ domains }}"
+    validate_certs: "{{ validate_ssl_certs }}"
+    return_content: "{{ return_response_content }}"
+    status_code: 200
+  register: api_response
+  no_log: "{{ set_log_debug }}"
+  loop: "{{ user_get_domain }}"
+  loop_control:
+    loop_var: domains
+
+- name: "Создаю директорию для результатов"
+  ansible.builtin.file:
+    path: "./results"
+    state: directory
+    mode: 0755
+
+- name: "Сохраняю результаты в json"
+  ansible.builtin.copy:
+    content: |
+      {{ item.content | from_json | to_nice_json }}
+    dest: "./results/{{ item.domains }}_dns_records.json"
+    mode: 0644
+  no_log: "{{ set_log_debug }}"
+  loop: "{{ api_response.results }}"
+  when: item.content is defined
+  no_log: true
+
+
+# # # # # # DEBUG!
+# - name: "Показать структуру api_response"
+#   ansible.builtin.debug:
+#     var: api_response.results[0]

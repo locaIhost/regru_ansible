@@ -1,0 +1,2 @@
+---
+- import_tasks: regru_get_info.yml
