@@ -1,0 +1,7 @@
+.env
+*.retry
+*.swp
+.ansible-lint
+.ansible_cache/
+results/
+!group_vars/all/creds.yml

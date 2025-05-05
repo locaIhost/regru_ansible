@@ -1,0 +1,5 @@
+# List of domains / Список доменов
+user_get_domain: 
+  - "example.ru"
+  - "example.com"
+  - "example.org"

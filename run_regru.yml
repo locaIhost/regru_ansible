@@ -1,0 +1,11 @@
+---
+###############################
+# Example of use
+###############################
+
+- name: Starting all tasks
+  hosts: localhost
+  become: no
+  gather_facts: false
+  roles:
+    - regru_domain_info
