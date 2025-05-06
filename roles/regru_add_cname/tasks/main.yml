@@ -1,0 +1,2 @@
+---
+- import_tasks: regru_put_cname.yml

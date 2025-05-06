@@ -1,4 +1,13 @@
 # List of domains / Список доменов
+get_domain: "example.ru"
+# U can add subdomain / Можешь добавить поддомен "foo.{{ get_domain }}"
+canonical_name: "{{ get_domain }}"
+
+cname_domain_list:
+  - "01-example"
+  - "02-example"
+  - "03-example"
+
 user_get_domain: 
   - "example.ru"
   - "example.com"

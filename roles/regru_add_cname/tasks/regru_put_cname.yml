@@ -1,0 +1,25 @@
+---
+  - name: "Добовляю CNAME запись"
+    ansible.builtin.uri:
+      url: "{{ regru_put_cname_record }}"
+      method: POST
+      headers:
+        User-Agent: "{{ user_agent }}"
+        Content-Type: "{{ content_type }}"
+      body_format: "{{ body_format }}"
+      body:
+        username: "{{ regru_login }}"
+        password: "{{ regru_password }}"
+        domain_name: "{{ get_domain }}"
+        subdomain: "{{ item }}"
+        canonical_name: "{{ canonical_name }}"
+        output_content_type: "{{ output_content_type }}"
+      validate_certs: "{{ validate_ssl_certs }}"
+      return_content: yes
+      status_code: 200
+    loop: "{{ cname_domain_list }}"
+    loop_control:
+      label: "{{ item }}"
+    register: api_raw_response
+    ignore_errors: yes
+    no_log: "{{ set_log_debug }}"

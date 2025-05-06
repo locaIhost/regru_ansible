@@ -9,3 +9,4 @@
   gather_facts: false
   roles:
     - regru_domain_info
+  # - regru_add_cname
