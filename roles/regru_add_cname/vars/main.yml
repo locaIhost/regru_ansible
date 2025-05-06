@@ -1,0 +1,12 @@
+# Service settings / Служебные настройки
+regru_put_cname_record: "https://api.reg.ru/api/regru2/zone/add_cname"
+validate_ssl_certs: yes
+return_response_content: yes
+output_content_type: "json"
+# false = enble debug log / true = disable debug log
+set_log_debug: "false"
+# Request settings / Настройки запроса
+user_agent: "Mozilla/5.0 (compatible; GithubBot/3.0)"
+content_type: "application/x-www-form-urlencoded"
+accept_type: "application/json"
+body_format: "form-urlencoded"
